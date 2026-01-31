@@ -10,6 +10,14 @@ config.json
 # API Keys (contains real keys - use API_KEYS.template.md as reference)
 API_KEYS.md
 
+# OAuth tokens and credentials files
+*_tokens.json
+*_token.json
+*tokens*.json
+*oauth*.py
+credentials.json
+client_secret*.json
+
 # Wallet keys and crypto credentials
 WALLET_KEYS.md
 
@@ -23,6 +31,8 @@ MCP_CONFIG.md
 
 # Separate projects (not part of TeleClaude)
 contentmorph/
+sports-viz/
+govcontracts/
 
 # Daemon logs
 teleclaude-daemon.log
@@ -64,3 +74,4 @@ yarn-error.log*
 # Package manager locks (uncomment if you want to ignore them)
 # package-lock.json
 # yarn.lock
+.vercel
