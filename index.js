@@ -240,6 +240,23 @@ function updateMcpConfig() {
 // ============================================
 
 function loadConfig() {
+  // First, check for environment variables (for cloud deployments like Railway)
+  if (process.env.TELEGRAM_TOKEN && process.env.ALLOWED_USERS) {
+    console.log('Loading configuration from environment variables...');
+    const allowedUsers = process.env.ALLOWED_USERS.split(',').map(id => parseInt(id.trim())).filter(id => !isNaN(id));
+    return {
+      mode: 'telegram',
+      telegramToken: process.env.TELEGRAM_TOKEN,
+      allowedUsers: allowedUsers,
+      workdir: process.env.WORKDIR || '/app',
+      credentials: {
+        email: process.env.DEFAULT_EMAIL || null,
+        password: process.env.DEFAULT_PASSWORD || null
+      }
+    };
+  }
+
+  // Fall back to config file
   if (!fs.existsSync(CONFIG_FILE)) {
     return null;
   }
